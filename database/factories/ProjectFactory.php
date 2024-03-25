@@ -4,7 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Type;
 
 
 /**
@@ -25,9 +27,13 @@ class ProjectFactory extends Factory
         $img = fake()->image(null, 200, 200);
         $img_url = Storage::putFileAs('project_image', $img, "$slug.png");
 
+        $type_ids = Type::pluck('id')->toArray();
+        $type_ids[] = null;
+
         return [
             'title' => $title,
             'slug' => $slug,
+            'type_id' => Arr::random($type_ids),
             'content' => fake()->paragraph(15, true),
             'image' => $img_url,
             'programming_language' => fake()->randomElement(['HTML', 'CSS', 'JS', 'PHP']),
