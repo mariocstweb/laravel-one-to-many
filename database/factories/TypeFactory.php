@@ -17,8 +17,8 @@ class TypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'label' => '',
-            'color' => fake()->hexColor(),
+            // 'label' => '',
+            // 'color' => fake()->hexColor(),
 
         ];
     }
