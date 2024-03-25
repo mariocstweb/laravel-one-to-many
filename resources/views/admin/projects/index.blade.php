@@ -23,6 +23,7 @@
       <th scope="col">Creato:</th>
       <th scope="col">Aggiornato:</th>
       <th scope="col">Linguaggio</th>
+      <th scope="col">Categoria</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -36,6 +37,8 @@
       <td>{{$project->created_at}}</td>
       <td>{{$project->updated_at}}</td>
       <td>{{$project->programming_language}}</td>
+      <td>{{$project->type? $project->type->label : ''}}</td>
+
       <td>
         <div class="d-flex gap-2">
             <a href="{{route('admin.projects.show', $project)}}" class="btn btn-primary">
