@@ -13,10 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // $table->unsignedBigInteger('type_id')->nullable()->after('id');
-            // $table->foreign('type_id')->references('id')->on('types')->nullOnDelete();
-            //
-            $table->foreign('type_id')->after('id')->nullable()->constrained()->nullOnDelete();
+
+            $table->foreignId('type_id')->after('id')->nullable()->constrained()->nullOnDelete();
         });
     }
 
@@ -27,8 +25,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //
-            // $table->dropForeign('projects_type_id_foreign');
-            $table->dropConstrainedForeignIdFor(Type::class);
+            $table->dropForeignIdFor(Type::class);
             $table->dropColumn('type_id');
         });
     }
