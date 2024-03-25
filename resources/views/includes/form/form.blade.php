@@ -16,22 +16,34 @@
   </div>
   @endif
   <div class="row p-3">
-    <div class="col-6">
+    <div class="col-4">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Titolo</label>
         <input type="text" class="form-control" placeholder="Insert title" name="title" value="{{old('title', $project->title)}}">
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Linguaggio</label>
         <input type="text" class="form-control" placeholder="Insert title" name="programming_language" value="{{old('programming_language', $project->programming_language)}}">
       </div>
     </div>
+    <div class="col-4">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Categoria</label>
+        <select name="type_id" id="type_id">
+          <option value="">Nessuna</option>
+          @foreach ($types as $type )
+          <option value="{{$type->id}}" @if(old('type_id') == $type->id) selected @endif>{{$type->label}}</option>
+            
+          @endforeach
+        </select>
+      </div>
+    </div>
     <div class="col-12">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Immagine</label>
-        <input type="file" class="form-control" placeholder="Insert title" name="image" value="{{old('image', $project->image)}}">
+        <input type="file" class="form-control" placeholder="Insert title" name="image" value="(old('image', $project->image))">
       </div>
     </div>
     <div class="col-12">

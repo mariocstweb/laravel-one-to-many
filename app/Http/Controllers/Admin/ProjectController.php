@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,8 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        return view('admin.projects.create', compact('project'));
+        $types = Type::select('label', 'id')->get();
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProjectController extends Controller
             'programming_language' => 'required|string|max:255',
             'image' => 'nullable',
             'content' => 'required|string',
+            'type_id' => 'nullable|exists:types,id'
         ]);
 
         $data = $request->all();
@@ -71,8 +74,11 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
+
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::select('label', 'id')->get();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**

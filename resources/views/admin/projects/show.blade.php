@@ -6,7 +6,7 @@
   <div class="card" style="width: 18rem;">
     <img src="{{asset('storage/' . $project->image)}}" class="card-img-top p-3" alt="...">
     <div class="card-body">
-      <h5 class="card-title me-3">{{$project->title}}<span class="badge text-bg-secondary" style="{{$project->type->color}}">{{$project->type? $project->type->label : ''}}</span></h5>
+      <h5 class="card-title me-3">{{$project->title}}<span class="badge text-bg-secondary" style="{{$project->type ? $project->type->color : ''}}">{{$project->type? $project->type->label : ''}}</span></h5>
       <p class="card-text">{{$project->content}}</p>
       <p class="card-text">
         <strong>Linguaggio usato: </strong>{{$project->programming_language}}
